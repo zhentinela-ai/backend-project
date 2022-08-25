@@ -1,13 +1,14 @@
 const express = require("express");
-const path = require("path");
 const ejs = require("ejs");
 const { join } = require("path");
+const { connectDB } = require("./db");
 
+connectDB();
 const app = express();
 
 // Settings
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs")
+app.set("views", join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 // Routes
 app.get("/api/users", (req, res) =>
@@ -17,7 +18,7 @@ app.get("/api/users", (req, res) =>
 app.get("/profile", (req, res) => {
   res.render("profile", {
     name: "ryan",
-    age: 27
+    age: 27,
   });
 });
 
